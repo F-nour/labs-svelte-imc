@@ -1,16 +1,13 @@
 <script>
-	import { createEventDispatcher } from 'svelte';
+	import { storePoids, storeTaille } from './stores';
 
-	const dispatch = createEventDispatcher();
-	export let taille = 1.8;
-	export let poids = 80;
+	let poids = 0;
+	let taille = 0;
 
 	function handleSubmit(event) {
-		dispatch(
-			'sauvegarder',
-			event.target.poids.value /
-				(event.target.taille.value * event.target.taille.value)
-		);
+		storePoids.set(poids);
+		storeTaille.set(parseFloat(taille));
+		dispatch('sauvegarder', (poids / taille ** 2).toFixed(2));
 	}
 </script>
 
@@ -28,7 +25,7 @@
 	</label>
 
 	<label>
-		Taille ({taille.toFixed(2)} m) :
+		Taille ({taille} m) :
 		<input
 			name="taille"
 			type="range"

@@ -1,24 +1,12 @@
 <script>
-	export let poids = 92;
-	export let taille = 1.76;
-	$: imc = (poids / taille ** 2).toFixed(2);
+	import { storePoids, storeTaille } from './stores';
+	$: imc = ($storePoids / $storeTaille ** 2).toFixed(2);
 	$: thin = imc < 18;
 	$: bold = imc > 25;
-
-	import { beforeUpdate, afterUpdate } from 'svelte';
-
-	beforeUpdate(() => {
-		console.log('the component is about to update');
-	});
-
-	afterUpdate(() => {
-		console.log('the component just updated');
-		imc = (poids / taille ** 2).toFixed(2);
-	});
 </script>
 
 <p class:thin class:bold>
-	Votre IMC ({poids}/{taille}<sup>2</sup>) est de {imc}
+	Votre IMC ({$storePoids}/{$storeTaille}<sup>2</sup>) est de {imc}
 </p>
 {#if imc < 18}
 	<p class="souspoids">Vous êtes maigre</p>
