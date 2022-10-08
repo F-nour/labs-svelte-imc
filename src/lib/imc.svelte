@@ -1,16 +1,16 @@
 <script>
-	import { storePoids, storeTaille } from './stores';
-	$: imc = ($storePoids / $storeTaille ** 2).toFixed(2);
-	$: thin = imc < 18;
-	$: bold = imc > 25;
+	import { storePoids, storeTaille, storeImc } from './stores';
+
+	$: thin = $storeImc < 18;
+	$: bold = $storeImc > 25;
 </script>
 
 <p class:thin class:bold>
-	Votre IMC ({$storePoids}/{$storeTaille}<sup>2</sup>) est de {imc}
+	Votre IMC ({$storePoids}/{$storeTaille}<sup>2</sup>) est de {$storeImc}
 </p>
-{#if imc < 18}
+{#if $storeImc < 18}
 	<p class="souspoids">Vous êtes maigre</p>
-{:else if imc > 25}
+{:else if $storeImc > 25}
 	<p class="surpoids">Vous êtes en surpoids</p>
 {:else}
 	<p class="normal">Vous êtes svelte !</p>
