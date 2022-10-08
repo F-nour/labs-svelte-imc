@@ -1,40 +1,29 @@
 <script>
 	import { storePoids, storeTaille } from './stores';
-
-	let poids = 0;
-	let taille = 0;
-
-	function handleSubmit(event) {
-		storePoids.set(poids);
-		storeTaille.set(parseFloat(taille));
-		dispatch('sauvegarder', (poids / taille ** 2).toFixed(2));
-	}
 </script>
 
-<form on:submit|preventDefault={handleSubmit}>
+<form>
 	<label>
-		Poids ({poids} kg) :
+		Poids ({$storePoids} kg) :
 		<input
 			name="poids"
 			type="range"
 			min="10"
 			max="200"
 			step="5"
-			bind:value={poids}
+			bind:value={$storePoids}
 		/>
 	</label>
 
 	<label>
-		Taille ({taille} m) :
+		Taille ({$storeTaille.toFixed(2)} m) :
 		<input
 			name="taille"
 			type="range"
 			min="0.5"
 			max="2.5"
 			step="0.01"
-			bind:value={taille}
+			bind:value={$storeTaille}
 		/>
 	</label>
-
-	<button type="submit">Sauvegarder</button>
 </form>
