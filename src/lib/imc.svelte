@@ -6,7 +6,7 @@
 	$: bold = $storeImc > 25;
 </script>
 
-<p class:thin class:bold>
+<p class:thin class:bold data-testid="imc">
 	Votre IMC ({$storePoids}/{$storeTaille}<sup>2</sup>) est de {$storeImc}
 </p>
 {#if thin}
