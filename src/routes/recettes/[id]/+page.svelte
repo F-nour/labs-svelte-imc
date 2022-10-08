@@ -1,8 +1,7 @@
 <script>
 	import { page } from '$app/stores';
-	import recettes from '../recettes.json';
-
-    $: recette = recettes[$page.params.id]
+	export let data;
+	$: recette = data.recette;
 </script>
 
 <section class="recette">

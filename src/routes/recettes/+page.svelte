@@ -1,5 +1,8 @@
 <script>
-	import recettes from './recettes.json';
+
+	export let data;
+	const recettes = data.recettes;
+
 </script>
 
 <section class="recettes">
