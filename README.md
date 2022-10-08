@@ -1,6 +1,7 @@
 # Labs Svelte
 
 Template de base pour le codelab svelte et sveltekit.
+[https://codelab-svelte.web.app/](https://codelab-svelte.web.app/)
 
 ## Démarrage
 

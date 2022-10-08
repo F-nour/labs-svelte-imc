@@ -1,5 +1,6 @@
 <script>
 	import { storePoids, storeTaille, storeImc } from './stores';
+	import { fly, fade } from 'svelte/transition';
 
 	$: thin = $storeImc < 18;
 	$: bold = $storeImc > 25;
@@ -8,12 +9,12 @@
 <p class:thin class:bold>
 	Votre IMC ({$storePoids}/{$storeTaille}<sup>2</sup>) est de {$storeImc}
 </p>
-{#if $storeImc < 18}
-	<p class="souspoids">Vous êtes maigre</p>
-{:else if $storeImc > 25}
-	<p class="surpoids">Vous êtes en surpoids</p>
+{#if thin}
+	<p class="souspoids" in:fly="{{ y: 200, duration: 2000 }}" out:fade>Vous êtes maigre</p>
+{:else if bold}
+	<p class="surpoids" in:fly="{{ y: 200, duration: 2000 }}" out:fade>Vous êtes en surpoids</p>
 {:else}
-	<p class="normal">Vous êtes svelte !</p>
+	<p class="normal" in:fly="{{ y: 200, duration: 2000 }}" out:fade>Vous êtes svelte !</p>
 {/if}
 
 <style>
