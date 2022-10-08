@@ -6,7 +6,7 @@
 </script>
 
 <section class="recette">
-	<img src={recette.image} />
+	<img src={recette.image} alt="Photo de la recette {recette.name}">
 	<h2>{recette.name}</h2>
 	<h3>
 		⏱ {recette.totalTime} min 👨‍🍳 {[
