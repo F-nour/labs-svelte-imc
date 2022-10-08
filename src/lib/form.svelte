@@ -1,10 +1,20 @@
 <script>
-	export let poids = 0;
-	export let taille = 0;
+	import { createEventDispatcher } from 'svelte';
 
+	const dispatch = createEventDispatcher();
+	export let taille = 1.8;
+	export let poids = 80;
+
+	function handleSubmit(event) {
+		dispatch(
+			'sauvegarder',
+			event.target.poids.value /
+				(event.target.taille.value * event.target.taille.value)
+		);
+	}
 </script>
 
-<form>
+<form on:submit|preventDefault={handleSubmit}>
 	<label>
 		Poids ({poids} kg) :
 		<input
@@ -13,7 +23,7 @@
 			min="10"
 			max="200"
 			step="5"
-            bind:value={poids}
+			bind:value={poids}
 		/>
 	</label>
 
@@ -25,7 +35,9 @@
 			min="0.5"
 			max="2.5"
 			step="0.01"
-            bind:value={taille}
+			bind:value={taille}
 		/>
 	</label>
+
+	<button type="submit">Sauvegarder</button>
 </form>
